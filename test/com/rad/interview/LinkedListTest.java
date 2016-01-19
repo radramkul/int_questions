@@ -17,11 +17,13 @@ public class LinkedListTest {
 	int[] sorted2 = { 0, 10, 13, 14, 15, 16, 17, 18, 19 };
 	int[] sorted3 = { -11, -2, 13, 14, 25, 36, 47, 58, 79 };
 	int[] sorted4 = { 21, 22, 23, 24, 25, 46, 47, 48, 49 };
+	int[] unsorted1 = { 1, 2, 5, 3, 10, 6, 9, 8 };
+	int[] unsorted2 = { 5, 4, 3, 2, 1 };
 	int[] dup1 = { 1, 1, 2 };
 	int[] dup2 = { 1, 2, 2, 2, 3 };
 	int[] dup3 = { 1, 1, 2, 3, 3 };
 	int[] empty = {};
-	int[] one = {1};
+	int[] one = { 1 };
 
 	@Before
 	public void setUp() throws Exception {
@@ -142,9 +144,9 @@ public class LinkedListTest {
 		LinkedListQuestions.printList(root1);
 		LinkedListQuestions.printList(root2);
 	}
-	
+
 	@Test
-	public void reverseTestIterative(){
+	public void reverseTestIterative() {
 		LinkedNode root1 = LinkedListQuestions.createLinkedList(one);
 		LinkedNode root2 = LinkedListQuestions.createLinkedList(dup1);
 		LinkedNode root3 = LinkedListQuestions.createLinkedList(num2);
@@ -157,9 +159,9 @@ public class LinkedListTest {
 		LinkedListQuestions.printList(root1);
 		LinkedListQuestions.printList(root2);
 		LinkedListQuestions.printList(root3);
-		
+
 	}
-	
+
 	@Test
 	public void deleteNthNodeTest() {
 		LinkedNode root1 = LinkedListQuestions.createLinkedList(num3);
@@ -167,19 +169,52 @@ public class LinkedListTest {
 		LinkedListQuestions.findNthNode(root1, 3);
 		LinkedListQuestions.printList(root1);
 	}
-	
+
 	@Test
 	public void swapPairsTest() {
 		LinkedNode root1 = LinkedListQuestions.createLinkedList(num3);
 		LinkedListQuestions.printList(root1);
 		LinkedNode root = LinkedListQuestions.swapInPairs(root1);
 		LinkedListQuestions.printList(root);
-		
-		root1 = LinkedListQuestions.createLinkedList(new int[]{1,2});
+
+		root1 = LinkedListQuestions.createLinkedList(new int[] { 1, 2 });
 		LinkedListQuestions.printList(root1);
 		root = LinkedListQuestions.swapInPairs(root1);
 		LinkedListQuestions.printList(root);
 	}
-	
+
+	@Test
+	public void mergeSortList() {
+		LinkedNode root1 = LinkedListQuestions.createLinkedList(unsorted1);
+		LinkedListQuestions.printList(root1);
+
+		LinkedNode root2 = LinkedListQuestions.createLinkedList(unsorted2);
+		LinkedListQuestions.printList(root2);
+
+		root1 = LinkedListQuestions.mergeSortList(root1);
+		root2 = LinkedListQuestions.mergeSortList(root2);
+
+		System.out.println("Sorted Lists: ");
+		LinkedListQuestions.printList(root1);
+		LinkedListQuestions.printList(root2);
+
+	}
+
+	@Test
+	public void insertionSortList() {
+		LinkedNode root1 = LinkedListQuestions.createLinkedList(unsorted1);
+		LinkedListQuestions.printList(root1);
+
+		LinkedNode root2 = LinkedListQuestions.createLinkedList(unsorted2);
+		LinkedListQuestions.printList(root2);
+
+		root1 = LinkedListQuestions.insertionSortList(root1);
+		root2 = LinkedListQuestions.insertionSortList(root2);
+
+		System.out.println("Sorted Lists: ");
+		LinkedListQuestions.printList(root1);
+		LinkedListQuestions.printList(root2);
+
+	}
 
 }

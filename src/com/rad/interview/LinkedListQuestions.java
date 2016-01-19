@@ -393,8 +393,8 @@ public class LinkedListQuestions {
 		hm.put(head, newHead);
 		RandomLinkNode p = head;
 		RandomLinkNode q = newHead;
-		
-		//Copy next pointers
+
+		// Copy next pointers
 		while (p != null && p.next != null) {
 			p = p.next;
 			RandomLinkNode t = new RandomLinkNode(p.number);
@@ -402,22 +402,118 @@ public class LinkedListQuestions {
 			q.next = t;
 			q = q.next;
 		}
-		
-		//Random pointers
+
+		// Random pointers
 		p = head;
 		q = newHead;
-		while(p !=null){
-			if(p.random != null){
+		while (p != null) {
+			if (p.random != null) {
 				q.random = hm.get(p.random);
-			}
-			else{
+			} else {
 				q.random = null;
 			}
-			p= p.next;
-			q= q.next;
+			p = p.next;
+			q = q.next;
 		}
-        return newHead;
+		return newHead;
 	}
+
+	public static LinkedNode mergeSortList(LinkedNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+
+		// Find middle node
+		LinkedNode cur = head;
+		LinkedNode prev = null;
+		while (cur != null && cur.next != null) {
+			prev = cur;
+			cur = cur.next;
+		}
+
+		prev.next = null;
+		head = mergeSortList(head);
+		cur = mergeSortList(cur);
+
+		// Merge Sort 2 linkedlist
+
+		LinkedNode fake = new LinkedNode(0);
+
+		LinkedNode p = head;
+		LinkedNode q = cur;
+		LinkedNode r = fake;
+		while (p != null && q != null) {
+			if (p.number < q.number) {
+				r.next = p;
+				p = p.next;
+				r = r.next;
+			} else {
+				r.next = q;
+				q = q.next;
+				r = r.next;
+			}
+		}
+
+		if (p == null) {
+			while (q != null) {
+				r.next = q;
+				q = q.next;
+				r = r.next;
+
+			}
+		}
+
+		if (q == null) {
+			while (p != null) {
+				r.next = p;
+				p = p.next;
+				r = r.next;
+
+			}
+		}
+
+		return fake.next;
+	}
+
+	public static LinkedNode insertionSortList(LinkedNode head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+
+		LinkedNode fake = new LinkedNode(Integer.MIN_VALUE);
+		fake.next = head;
+		LinkedNode prev = head;
+		LinkedNode cur = head.next;
+
+		// We will assume that List till prev is sorted;
+		while (cur != null) {
+
+			while (cur != null && (cur.number < prev.number)) {
+				// Sorted Insert cur in list
+				// Start from fake
+				LinkedNode next = cur.next;
+				LinkedNode start = fake;
+				LinkedNode previousToStart = null;
+				while (cur.number > start.number) {
+					previousToStart = start;
+					start = start.next;
+				}
+				previousToStart.next = cur;
+				cur.next = start;
+				prev.next = next;
+				cur = next;
+			}
+
+			prev = prev.next;
+			if (cur != null) {
+				cur = cur.next;
+			}
+		}
+
+		return fake.next;
+
+	}
+
 }
 
 class LinkedNode {

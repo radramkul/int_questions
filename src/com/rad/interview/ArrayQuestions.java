@@ -259,33 +259,31 @@ public class ArrayQuestions {
 	}
 
 	static int[] removeDuplicatesFromSortedArray(int[] arr) {
-		if(arr==null|| arr.length<2){
+		if (arr == null || arr.length < 2) {
 			return arr;
 		}
 		int i = 1;
 		int j = 0;
 		while (i < arr.length) {
-            if(arr[i]==arr[i-1]){
-            	i++;
-            }
-            else{
-            	j++;
-            	arr[j]=arr[i];
-            	i++;
-            }
+			if (arr[i] == arr[i - 1]) {
+				i++;
+			} else {
+				j++;
+				arr[j] = arr[i];
+				i++;
+			}
 		}
-		int[] newArray = new int[j+1];
-		System.arraycopy(arr, 0, newArray, 0, j+1);
+		int[] newArray = new int[j + 1];
+		System.arraycopy(arr, 0, newArray, 0, j + 1);
 		printArray(newArray);
 		return newArray;
 	}
-	
-	
+
 	/*
 	 * This method allows repetition only once
-	 * */
+	 */
 	static int[] removeDuplicatesFromSortedArray2(int[] arr) {
-		if(arr==null|| arr.length<2){
+		if (arr == null || arr.length < 2) {
 			return arr;
 		}
 		int[] arr2 = new int[arr.length];
@@ -293,26 +291,26 @@ public class ArrayQuestions {
 		int i = 2;
 		int j = 1;
 		while (i < arr2.length) {
-            if((arr2[i]==arr2[i-1])&&(arr2[i-1]==arr2[i-2])){
-            	i++;
-            }
-            else{
-            	j++;
-            	arr[j]=arr[i];
-            	i++;
-            }
+			if ((arr2[i] == arr2[i - 1]) && (arr2[i - 1] == arr2[i - 2])) {
+				i++;
+			} else {
+				j++;
+				arr[j] = arr[i];
+				i++;
+			}
 		}
-		int[] newArray = new int[j+1];
-		System.arraycopy(arr, 0, newArray, 0, j+1);
+		int[] newArray = new int[j + 1];
+		System.arraycopy(arr, 0, newArray, 0, j + 1);
 		printArray(newArray);
 		return newArray;
 	}
 
-	private static void printArray(int[] newArray) {
-		for(int i:newArray){
-			System.out.println(i);
+	public static void printArray(int[] newArray) {
+		for (int i : newArray) {
+			System.out.print(i + " ");
 		}
-		
+
+		System.out.println();
 	}
 
 }
